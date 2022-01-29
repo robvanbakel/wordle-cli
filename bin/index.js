@@ -28,6 +28,8 @@ const round = () => {
       console.log(`\nChoose a ${wordOfTheDay.length}-letter word!\n`)
       round()
       return
+    } else if (!options.unlimited) {
+      currentRound++
     }
 
     const userWord = input.toUpperCase().split('')
@@ -78,8 +80,7 @@ const round = () => {
     showWord(result)
 
     // Start new round or end game
-    if (currentRound < rounds - 1 && !gameWon) {
-      if (!options.unlimited) currentRound++
+    if (currentRound < rounds && !gameWon) {
       round()
     } else {
       wordle.close()
@@ -98,7 +99,7 @@ wordle.on('close', () => {
 })
 
 // Start game
-if(options.help) {
+if (options.help) {
   messages.title()
   messages.help()
   process.exit(0)
