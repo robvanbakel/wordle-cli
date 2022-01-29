@@ -1,0 +1,15 @@
+{
+  "name": "wordle-cli",
+  "version": "1.0.0",
+  "description": "CLI interpretation of the game Wordle",
+  "main": "bin/index.js",
+  "bin": {
+    "wordle": "bin/index.js"
+  },
+  "author": {
+    "name": "Rob van Bakel",
+    "email": "robbakel@gmail.com",
+    "url": "https://robvanbakel.com"
+  },
+  "license": "ISC"
+}
