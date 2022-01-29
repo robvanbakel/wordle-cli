@@ -1,6 +1,6 @@
 {
   "name": "wordle-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CLI interpretation of the game Wordle",
   "main": "bin/index.js",
   "bin": {
@@ -11,5 +11,13 @@
     "email": "robbakel@gmail.com",
     "url": "https://robvanbakel.com"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robvanbakel/wordle-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/robvanbakel/wordle-cli/issues"
+  },
+  "homepage": "https://github.com/robvanbakel/wordle-cli#readme",
   "license": "ISC"
 }
