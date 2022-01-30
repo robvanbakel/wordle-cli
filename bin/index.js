@@ -27,7 +27,7 @@ const round = () => {
       console.log(`\nChoose a ${wordOfTheDay.length}-letter word!\n`)
       round()
       return
-    } else if (!word.validate(input.toLowerCase())) {
+    } else if (!options.word && !word.validate(input.toLowerCase())) {
       console.log(`\n${input.toUpperCase()} is not a valid word!\n`)
       round()
       return
