@@ -17,6 +17,17 @@ const get = (date = new Date(), random) => {
   return words[index].toUpperCase().split('')
 }
 
+// VALIDATE WORD
+
+let validWordsBuffer = fs.readFileSync(path.join(__dirname, 'validWords.json'))
+let validWords = JSON.parse(validWordsBuffer)
+
+const validate = (word) => {
+  if (words.includes(word) || validWords.includes(word)) {
+    return true
+  }
+}
+
 // SHOW WORD
 
 const formattingCodes = {
