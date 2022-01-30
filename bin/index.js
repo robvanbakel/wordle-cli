@@ -1,8 +1,7 @@
 #! /usr/bin/env node
 const { createInterface } = require('readline')
-const getWord = require('./getWord')
+const word = require('./functions')
 const getOptions = require('./getOptions')
-const showWord = require('./showWord')
 const messages = require('./messages')
 
 // Define variables
@@ -10,7 +9,7 @@ let currentRound = 0
 let gameWon = false
 const rounds = 6
 const options = getOptions()
-const wordOfTheDay = options.word || getWord(options.date, options.random)
+const wordOfTheDay = options.word || word.get(options.date, options.random)
 const guessRegex = new RegExp(`^[a-z]{${wordOfTheDay.length}}$`, 'i')
 
 const wordle = createInterface({
@@ -77,7 +76,7 @@ const round = () => {
       gameWon = true
     }
 
-    showWord(result)
+    word.show(result)
 
     // Start new round or end game
     if (currentRound < rounds && !gameWon) {
