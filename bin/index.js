@@ -110,7 +110,7 @@ if (options.help) {
   console.log("You can't choose a date in combination with the random flag")
   process.exit(0)
 } else if (options.spoiler) {
-  showWord(
+  word.show(
     wordOfTheDay.map((letter) => {
       return { letter, color: 'green' }
     })
