@@ -3,19 +3,39 @@ const path = require('path')
 
 // GET WORD
 
+const formatWord = (word) => word.toUpperCase().split('')
+
 let wordsBuffer = fs.readFileSync(path.join(__dirname, 'words.json'))
 let words = JSON.parse(wordsBuffer)
 
-const get = (date = Date.UTC(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()), random) => {
-  
-  if (random) {
-    return words[Math.floor(Math.random() * words.length)].toUpperCase().split('')
+const get = (options) => {
+  // Get user specified word
+  if (options.word) {
+    return {
+      wordOfTheDay: formatWord(options.word),
+      gameId: false,
+    }
+  }
+
+  // Get random word
+  if (options.random) {
+    const gameId = Math.floor(Math.random() * words.length)
+
+    return {
+      wordOfTheDay: formatWord(words[gameId]),
+      gameId,
+    }
   }
 
   // Get word for specified date
+  const date = options.date || Date.UTC(new Date().getFullYear(), new Date().getMonth(), new Date().getDate())
   const diff = new Date(date) - new Date(Date.UTC(2021, 5, 19))
-  const index = Math.floor(diff / 864e5)
-  return words[index].toUpperCase().split('')
+  const gameId = Math.floor(diff / 864e5)
+
+  return {
+    wordOfTheDay: formatWord(words[gameId]),
+    gameId,
+  }
 }
 
 // VALIDATE WORD

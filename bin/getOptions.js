@@ -34,9 +34,6 @@ const getOptions = () => {
   // Reformat Date option
   if (options.date) options.date = new Date(options.date.split('-').reverse().join('-'))
 
-  // Reformat Word option
-  if (options.word) options.word = options.word.toUpperCase().split('')
-
   return options
 }
 

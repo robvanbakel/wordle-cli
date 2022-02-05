@@ -9,7 +9,7 @@ let currentRound = 0
 let gameWon = false
 const rounds = 6
 const options = getOptions()
-const wordOfTheDay = options.word || word.get(options.date, options.random)
+const { wordOfTheDay, gameId } = word.get(options)
 const guessRegex = new RegExp(`^[a-z]{${wordOfTheDay.length}}$`, 'i')
 
 const wordle = createInterface({
@@ -94,7 +94,7 @@ const round = () => {
 // Close game
 wordle.on('close', () => {
   if (gameWon) {
-    messages.youWon()
+    messages.youWon(gameId, {unlimited: options.unlimited, currentRound, rounds})
   } else {
     console.log('Game over! The word was ' + wordOfTheDay.join(''))
   }

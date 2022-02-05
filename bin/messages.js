@@ -14,24 +14,36 @@ module.exports = {
     
     `)
   },
-  youWon() {
-    console.log(`
+  youWon(gameId, rounds) {
+    let stats
+
+    if (gameId && !rounds.unlimited) {
+      stats = `worlde #${gameId} ${rounds.currentRound}/${rounds.rounds}`
+    } else if (gameId) {
+      stats = `  worlde #${gameId}  `
+    } else if (!rounds.unlimited) {
+      stats = `   worlde ${rounds.currentRound}/${rounds.rounds}  `
+    } else {
+      stats = `               `
+    }
+
+    console.log(`      
       _____________________________
     /  \\                           \\
     |   |                           |
-      \\_|                           |
-        |      CONGRATULATIONS      |
+      \\_|      CONGRATULATIONS      |
+        |      ${stats}      |
         |                           |
-        |        ___________        |
-        |       '._==_==_=_.'       |
-        |       .-\\:      /-.       |
-        |      | (|:.     |) |      |
-        |       '-|:.     |-'       |
-        |         \\::.    /         |
-        |          '::. .'          |
-        |            ) (            |
-        |          _.' '._          |
-        |         '"""""""'         |
+        |     \x1b[33m   ___________   \x1b[0m     |
+        |     \x1b[33m  '._==_==_=_.'  \x1b[0m     |
+        |     \x1b[33m  .-\\:      /-. \x1b[0m      |
+        |     \x1b[33m | (|:.     |) | \x1b[0m     |
+        |     \x1b[33m  '-|:.     |-'  \x1b[0m     |
+        |     \x1b[33m    \\::.    /   \x1b[0m      |
+        |     \x1b[33m     '::. .'     \x1b[0m     |
+        |     \x1b[33m       ) (       \x1b[0m     |
+        |     \x1b[33m     _.' '._     \x1b[0m     |
+        |     \x1b[33m    '"""""""'    \x1b[0m     |
         |                           |
         |   ________________________|___
         |  /                           /
