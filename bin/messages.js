@@ -1,6 +1,6 @@
 module.exports = {
   title() {
-    console.clear()
+    // console.clear()
     console.log(`
 
      **       **    *******    *******    *******    **        ********
@@ -74,6 +74,7 @@ module.exports = {
     -d --date <DD-MM-YYYY> : Choose a date to play with the correspondig word
     -h --hard              : Disable yellow tiles from the results
     -r --random            : Play with a randomly selected word
+    -g --guesses <number>  : Set a custom amount of rounds for a game
     -s --spoiler           : Show the word of the day immediately
     -u --unlimited         : Disable the maximum of 6 rounds per game
     -w --word <word>       : Manually choose a word to play with

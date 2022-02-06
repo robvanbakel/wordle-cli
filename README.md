@@ -26,6 +26,8 @@ To start the game, run `wordle` in your command line and guess your first word! 
 
 `-r` `--random`: Play with a randomly selected word
 
+`-g` `--guesses` `<number>`: Set a custom amount of rounds for a game
+
 `-s` `--spoiler`: Show the word of the day immediately
 
 `-u` `--unlimited`: Disable the maximum of 6 rounds per game

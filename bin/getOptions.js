@@ -21,6 +21,9 @@ const getOptions = () => {
         case 'u':
           options['unlimited'] = true
           break
+        case 'g':
+          options['guesses'] = flagSplit[1]
+          break
         case 'd':
           options['date'] = flagSplit[1]
           break
@@ -33,6 +36,10 @@ const getOptions = () => {
 
   // Reformat Date option
   if (options.date) options.date = new Date(options.date.split('-').reverse().join('-'))
+
+  // Check guesses option
+  if (options.guesses == '0') options.unlimited = true
+  if (!parseInt(options.guesses)) delete options.guesses
 
   return options
 }

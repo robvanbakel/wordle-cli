@@ -7,8 +7,8 @@ const messages = require('./messages')
 // Define variables
 let currentRound = 0
 let gameWon = false
-const rounds = 6
 const options = getOptions()
+const rounds = options.guesses || 6
 const { wordOfTheDay, gameId } = word.get(options)
 const guessRegex = new RegExp(`^[a-z]{${wordOfTheDay.length}}$`, 'i')
 
