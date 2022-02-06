@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 const { createInterface } = require('readline')
-const word = require('./functions')
+const word = require('./wordFunctions')
 const getOptions = require('./getOptions')
 const messages = require('./messages')
 

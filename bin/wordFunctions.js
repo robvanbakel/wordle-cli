@@ -1,6 +1,8 @@
 const fs = require('fs')
 const path = require('path')
 
+const { insertSpaces } = require('./utils')
+
 // GET WORD
 
 const formatWord = (word) => word.toUpperCase().split('')
@@ -60,7 +62,6 @@ const formattingCodes = {
 
 const format = (color = 'reset') => `\x1b[${formattingCodes[color].join(';')}m`
 const endTile = () => format() + ' '
-const insertSpaces = (num) => new Array(num + 1).join(' ')
 
 const show = (result) => {
   let topBottom = ''

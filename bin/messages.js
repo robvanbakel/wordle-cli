@@ -1,3 +1,5 @@
+const { insertSpaces } = require('./utils')
+
 module.exports = {
   title() {
     console.clear()
@@ -15,24 +17,24 @@ module.exports = {
     `)
   },
   youWon(gameId, rounds) {
-    let stats
+    let stats = []
+    let statsOutput = ''
 
-    if (gameId && !rounds.unlimited) {
-      stats = `worlde #${gameId} ${rounds.currentRound}/${rounds.rounds}`
-    } else if (gameId) {
-      stats = `  worlde #${gameId}  `
-    } else if (!rounds.unlimited) {
-      stats = `   worlde ${rounds.currentRound}/${rounds.rounds}  `
-    } else {
-      stats = `               `
-    }
+    if (gameId) stats.push(`#${gameId}`)
+    if (!rounds.unlimited) stats.push(`${rounds.currentRound}/${rounds.rounds}`)
+
+    if (stats.length) statsOutput = `wordle ${stats.join(' ')}`
+
+    const statsPadding = (23 - statsOutput.length) / 2
+
+    statsOutput = insertSpaces(Math.ceil(statsPadding)) + statsOutput + insertSpaces(Math.floor(statsPadding))
 
     console.log(`      
       _____________________________
     /  \\                           \\
     |   |                           |
       \\_|      CONGRATULATIONS      |
-        |      ${stats}      |
+        |  ${statsOutput}  |
         |                           |
         |     \x1b[33m   ___________   \x1b[0m     |
         |     \x1b[33m  '._==_==_=_.'  \x1b[0m     |
