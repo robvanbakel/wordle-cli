@@ -1,6 +1,6 @@
 module.exports = {
   title() {
-    // console.clear()
+    console.clear()
     console.log(`
 
      **       **    *******    *******    *******    **        ********
