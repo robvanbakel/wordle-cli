@@ -36,4 +36,4 @@ To start the game, run `wordle` in your command line and guess your first word! 
 
 ### Credits
 
-This is command line interpretation of Wordle, created by [Rob van Bakel](https://github.com/robvanbakel). The original game was created by Josh Wardle ([@powerlanguish](https://twitter.com/powerlanguish)) and available on [powerlanguage.co.uk](https://powerlanguage.co.uk/wordle/).
+This is command line interpretation of Wordle, created by [Rob van Bakel](https://github.com/robvanbakel). The original game was created by Josh Wardle ([@powerlanguish](https://twitter.com/powerlanguish)) and is available on [www.nytimes.com/games/wordle](https://www.nytimes.com/games/wordle).

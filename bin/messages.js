@@ -83,8 +83,9 @@ module.exports = {
 
 \x1b[1mCREDITS\x1b[0m
 
-    This is command line interpretation of Wordle, created by Rob van Bakel.
-    The original game was created by Josh Wardle (@powerlanguish).
+    This is a command line interpretation of Wordle, created by Rob van Bakel.
+    The original game was created by Josh Wardle (@powerlanguish) and is
+    available on www.nytimes.com/games/wordle.
     
     `)
   },
