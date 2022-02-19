@@ -8,29 +8,34 @@ const getOptions = () => {
     if (/^--/.test(flagSplit[0])) {
       options[flagSplit[0].substring(2)] = flagSplit[1] || true
     } else if (/^-/.test(flagSplit[0])) {
-      switch (flagSplit[0].substring(1)) {
-        case 's':
-          options['spoiler'] = true
-          break
-        case 'h':
-          options['hard'] = true
-          break
-        case 'r':
-          options['random'] = true
-          break
-        case 'u':
-          options['unlimited'] = true
-          break
-        case 'g':
-          options['guesses'] = flagSplit[1]
-          break
-        case 'd':
-          options['date'] = flagSplit[1]
-          break
-        case 'w':
-          options['word'] = flagSplit[1]
-          break
-      }
+      flagSplit[0]
+        .substring(1)
+        .split('')
+        .forEach((flag) => {
+          switch (flag) {
+            case 's':
+              options['spoiler'] = true
+              break
+            case 'h':
+              options['hard'] = true
+              break
+            case 'r':
+              options['random'] = true
+              break
+            case 'u':
+              options['unlimited'] = true
+              break
+            case 'g':
+              options['guesses'] = flagSplit[1]
+              break
+            case 'd':
+              options['date'] = flagSplit[1]
+              break
+            case 'w':
+              options['word'] = flagSplit[1]
+              break
+          }
+        })
     }
   })
 
