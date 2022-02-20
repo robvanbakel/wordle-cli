@@ -21,7 +21,7 @@ const wordle = createInterface({
 const round = () => {
   const result = new Array(wordOfTheDay.length).fill({})
 
-  wordle.question('Guess a word: ', (input) => {
+  wordle.question('Guess a word: ', async (input) => {
     // Check if input is valid
     if (!guessRegex.test(input)) {
       console.log(`\nChoose a ${wordOfTheDay.length}-letter word!\n`)
@@ -80,7 +80,7 @@ const round = () => {
       gameWon = true
     }
 
-    word.show(result)
+    await word.show(result)
 
     // Start new round or end game
     if (currentRound < rounds && !gameWon) {
@@ -94,30 +94,32 @@ const round = () => {
 // Close game
 wordle.on('close', () => {
   if (gameWon) {
-    messages.youWon(gameId, {unlimited: options.unlimited, currentRound, rounds})
+    messages.youWon(gameId, { unlimited: options.unlimited, currentRound, rounds })
   } else {
     console.log('Game over! The word was ' + wordOfTheDay.join(''))
   }
   process.exit(0)
 })
 
-// Start game
-if (options.help) {
-  messages.title()
-  messages.help()
-  process.exit(0)
-} else if (options.date && options.random) {
-  console.log("You can't choose a date in combination with the random flag")
-  process.exit(0)
-} else if (options.spoiler) {
-  word.show(
-    wordOfTheDay.map((letter) => {
-      return { letter, color: 'green' }
-    })
-  )
-  process.exit(0)
-} else {
-  // Start game
-  messages.title()
-  round()
+const start = async () => {
+  if (options.help) {
+    messages.title()
+    messages.help()
+    process.exit(0)
+  } else if (options.date && options.random) {
+    console.log("You can't choose a date in combination with the random flag")
+    process.exit(0)
+  } else if (options.spoiler) {
+    await word.show(
+      wordOfTheDay.map((letter) => {
+        return { letter, color: 'green' }
+      })
+    )
+    process.exit(0)
+  } else {
+    messages.title()
+    round()
+  }
 }
+
+start()

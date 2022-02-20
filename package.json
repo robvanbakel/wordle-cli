@@ -1,6 +1,6 @@
 {
   "name": "wordle-cli",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "CLI interpretation of the game Wordle",
   "main": "bin/index.js",
   "bin": {
