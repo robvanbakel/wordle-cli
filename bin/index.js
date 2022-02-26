@@ -109,6 +109,12 @@ const start = async () => {
   } else if (options.date && options.random) {
     console.log("You can't choose a date in combination with the random flag")
     process.exit(0)
+  } else if (options.guesses && options.unlimited) {
+    console.log("You can't choose an amount of guesses in combination with the unlimited flag")
+    process.exit(0)
+  } else if (options.word && options.random) {
+    console.log("You can't choose a custom word in combination with the random flag")
+    process.exit(0)
   } else if (options.spoiler) {
     await word.show(
       wordOfTheDay.map((letter) => {
