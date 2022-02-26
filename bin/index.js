@@ -5,7 +5,6 @@ const getOptions = require('./getOptions')
 const messages = require('./messages')
 
 // Define variables
-let currentRound = 0
 let gameWon = false
 let history = []
 const options = getOptions()
@@ -32,8 +31,6 @@ const round = () => {
       console.log(`\n${input.toUpperCase()} is not a valid word!\n`)
       round()
       return
-    } else if (!options.unlimited) {
-      currentRound++
     }
 
     const userWord = input.toUpperCase().split('')
@@ -83,9 +80,10 @@ const round = () => {
 
     await word.show(result)
 
+    history.push(result)
+
     // Start new round or end game
-    if (currentRound < rounds && !gameWon) {
-      history.push(result)
+    if ((options.unlimited || history.length < rounds) && !gameWon) {
       round()
     } else {
       wordle.close()
@@ -96,7 +94,7 @@ const round = () => {
 // Close game
 wordle.on('close', () => {
   if (gameWon) {
-    messages.youWon(gameId, { unlimited: options.unlimited, currentRound, rounds })
+    messages.youWon(gameId, { unlimited: options.unlimited, roundsPlayed: history.length, rounds })
   } else {
     console.log('Game over! The word was ' + wordOfTheDay.join(''))
   }

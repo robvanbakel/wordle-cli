@@ -21,7 +21,7 @@ module.exports = {
     let statsOutput = ''
 
     if (gameId) stats.push(`#${gameId}`)
-    if (!rounds.unlimited) stats.push(`${rounds.currentRound}/${rounds.rounds}`)
+    if (!rounds.unlimited) stats.push(`${rounds.roundsPlayed}/${rounds.rounds}`)
 
     if (stats.length) statsOutput = `wordle ${stats.join(' ')}`
 
