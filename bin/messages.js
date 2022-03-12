@@ -1,8 +1,8 @@
-const { insertSpaces } = require('./utils')
+const { insertSpaces } = require('./utils');
 
 module.exports = {
   title() {
-    console.clear()
+    console.clear();
     console.log(`
 
      **       **    *******    *******    *******    **        ********
@@ -14,23 +14,23 @@ module.exports = {
     /**/   ///**  //*******   /**   //** /*******   /******** /********
     //       //    ///////    //     //  ///////    ////////  //////// 
     
-    `)
+    `);
   },
   youWon(gameId, rounds) {
-    const stats = []
-    let statsOutput = ''
+    const stats = [];
+    let statsOutput = '';
 
-    if (gameId) stats.push(`#${gameId}`)
-    if (!rounds.unlimited) stats.push(`${rounds.roundsPlayed}/${rounds.rounds}`)
+    if (gameId) stats.push(`#${gameId}`);
+    if (!rounds.unlimited) stats.push(`${rounds.roundsPlayed}/${rounds.rounds}`);
 
-    if (stats.length) statsOutput = `wordle ${stats.join(' ')}`
+    if (stats.length) statsOutput = `wordle ${stats.join(' ')}`;
 
-    const statsPadding = (23 - statsOutput.length) / 2
+    const statsPadding = (23 - statsOutput.length) / 2;
 
-    const padStart = insertSpaces(Math.ceil(statsPadding))
-    const padEnd = insertSpaces(Math.floor(statsPadding))
+    const padStart = insertSpaces(Math.ceil(statsPadding));
+    const padEnd = insertSpaces(Math.floor(statsPadding));
 
-    statsOutput = padStart + statsOutput + padEnd
+    statsOutput = padStart + statsOutput + padEnd;
 
     console.log(`      
       _____________________________
@@ -54,7 +54,7 @@ module.exports = {
         |  /                           /
         \\_/___________________________/
 
-   `)
+   `);
   },
   help() {
     console.log(`
@@ -90,6 +90,6 @@ module.exports = {
     The original game was created by Josh Wardle (@powerlanguish) and is
     available on www.nytimes.com/games/wordle.
     
-    `)
+    `);
   },
-}
+};

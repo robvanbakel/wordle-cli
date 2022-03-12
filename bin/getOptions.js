@@ -1,12 +1,12 @@
 const getOptions = () => {
-  const options = {}
+  const options = {};
 
   // Convert arguments to options
   process.argv.slice(2).forEach((option) => {
-    const flagSplit = option.split('=')
+    const flagSplit = option.split('=');
 
     if (/^--/.test(flagSplit[0])) {
-      options[flagSplit[0].substring(2)] = flagSplit[1] || true
+      options[flagSplit[0].substring(2)] = flagSplit[1] || true;
     } else if (/^-/.test(flagSplit[0])) {
       flagSplit[0]
         .substring(1)
@@ -14,41 +14,41 @@ const getOptions = () => {
         .forEach((flag) => {
           switch (flag) {
             case 's':
-              options.spoiler = true
-              break
+              options.spoiler = true;
+              break;
             case 'h':
-              options.hard = true
-              break
+              options.hard = true;
+              break;
             case 'r':
-              options.random = true
-              break
+              options.random = true;
+              break;
             case 'u':
-              options.unlimited = true
-              break
+              options.unlimited = true;
+              break;
             case 'g':
-              [options.guesses] = flagSplit
-              break
+              [options.guesses] = flagSplit;
+              break;
             case 'd':
-              [options.date] = flagSplit
-              break
+              [options.date] = flagSplit;
+              break;
             case 'w':
-              [options.word] = flagSplit
-              break
+              [options.word] = flagSplit;
+              break;
             default:
-              break
+              break;
           }
-        })
+        });
     }
-  })
+  });
 
   // Reformat Date option
-  if (options.date) options.date = new Date(options.date.split('-').reverse().join('-'))
+  if (options.date) options.date = new Date(options.date.split('-').reverse().join('-'));
 
   // Check guesses option
-  if (options.guesses === '0') options.unlimited = true
-  if (!parseInt(options.guesses, 10)) delete options.guesses
+  if (options.guesses === '0') options.unlimited = true;
+  if (!parseInt(options.guesses, 10)) delete options.guesses;
 
-  return options
-}
+  return options;
+};
 
-module.exports = getOptions
+module.exports = getOptions;
