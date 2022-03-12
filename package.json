@@ -3,6 +3,9 @@
   "version": "1.2.2",
   "description": "CLI interpretation of the game Wordle",
   "main": "bin/index.js",
+  "scripts": {
+    "lint": "eslint ."
+  },
   "bin": {
     "wordle": "bin/index.js"
   },
@@ -19,5 +22,9 @@
     "url": "https://github.com/robvanbakel/wordle-cli/issues"
   },
   "homepage": "https://github.com/robvanbakel/wordle-cli#readme",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.10.0",
+    "eslint-config-airbnb-base": "^15.0.0"
+  }
 }
