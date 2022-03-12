@@ -2,8 +2,8 @@ const getOptions = () => {
   const options = {}
 
   // Convert arguments to options
-  process.argv.slice(2).map((flag) => {
-    const flagSplit = flag.split('=')
+  process.argv.slice(2).forEach((option) => {
+    const flagSplit = option.split('=')
 
     if (/^--/.test(flagSplit[0])) {
       options[flagSplit[0].substring(2)] = flagSplit[1] || true
@@ -14,25 +14,27 @@ const getOptions = () => {
         .forEach((flag) => {
           switch (flag) {
             case 's':
-              options['spoiler'] = true
+              options.spoiler = true
               break
             case 'h':
-              options['hard'] = true
+              options.hard = true
               break
             case 'r':
-              options['random'] = true
+              options.random = true
               break
             case 'u':
-              options['unlimited'] = true
+              options.unlimited = true
               break
             case 'g':
-              options['guesses'] = flagSplit[1]
+              [options.guesses] = flagSplit
               break
             case 'd':
-              options['date'] = flagSplit[1]
+              [options.date] = flagSplit
               break
             case 'w':
-              options['word'] = flagSplit[1]
+              [options.word] = flagSplit
+              break
+            default:
               break
           }
         })
@@ -43,8 +45,8 @@ const getOptions = () => {
   if (options.date) options.date = new Date(options.date.split('-').reverse().join('-'))
 
   // Check guesses option
-  if (options.guesses == '0') options.unlimited = true
-  if (!parseInt(options.guesses)) delete options.guesses
+  if (options.guesses === '0') options.unlimited = true
+  if (!parseInt(options.guesses, 10)) delete options.guesses
 
   return options
 }

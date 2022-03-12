@@ -17,7 +17,7 @@ module.exports = {
     `)
   },
   youWon(gameId, rounds) {
-    let stats = []
+    const stats = []
     let statsOutput = ''
 
     if (gameId) stats.push(`#${gameId}`)
@@ -27,7 +27,10 @@ module.exports = {
 
     const statsPadding = (23 - statsOutput.length) / 2
 
-    statsOutput = insertSpaces(Math.ceil(statsPadding)) + statsOutput + insertSpaces(Math.floor(statsPadding))
+    const padStart = insertSpaces(Math.ceil(statsPadding))
+    const padEnd = insertSpaces(Math.floor(statsPadding))
+
+    statsOutput = padStart + statsOutput + padEnd
 
     console.log(`      
       _____________________________

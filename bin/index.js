@@ -6,7 +6,7 @@ const messages = require('./messages')
 
 // Define variables
 let gameWon = false
-let history = []
+const history = []
 const options = getOptions()
 const rounds = options.guesses || 6
 const { wordOfTheDay, gameId } = word.get(options)
@@ -27,7 +27,9 @@ const round = () => {
       console.log(`\nChoose a ${wordOfTheDay.length}-letter word!\n`)
       round()
       return
-    } else if (!options.word && !word.validate(input.toLowerCase())) {
+    }
+
+    if (!options.word && !word.validate(input.toLowerCase())) {
       console.log(`\n${input.toUpperCase()} is not a valid word!\n`)
       round()
       return
@@ -96,7 +98,7 @@ wordle.on('close', () => {
   if (gameWon) {
     messages.youWon(gameId, { unlimited: options.unlimited, roundsPlayed: history.length, rounds })
   } else {
-    console.log('Game over! The word was ' + wordOfTheDay.join(''))
+    console.log(`Game over! The word was ${wordOfTheDay.join('')}`)
   }
   process.exit(0)
 })
@@ -116,11 +118,7 @@ const start = async () => {
     console.log("You can't choose a custom word in combination with the random flag")
     process.exit(0)
   } else if (options.spoiler) {
-    await word.show(
-      wordOfTheDay.map((letter) => {
-        return { letter, color: 'green' }
-      })
-    )
+    await word.show(wordOfTheDay.map((letter) => ({ letter, color: 'green' })))
     process.exit(0)
   } else {
     messages.title()

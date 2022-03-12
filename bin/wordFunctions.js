@@ -7,8 +7,8 @@ const { insertSpaces } = require('./utils')
 
 const formatWord = (word) => word.toUpperCase().split('')
 
-let wordsBuffer = fs.readFileSync(path.join(__dirname, 'words.json'))
-let words = JSON.parse(wordsBuffer)
+const wordsBuffer = fs.readFileSync(path.join(__dirname, 'words.json'))
+const words = JSON.parse(wordsBuffer)
 
 const get = (options) => {
   // Get user specified word
@@ -30,7 +30,9 @@ const get = (options) => {
   }
 
   // Get word for specified date
-  const date = options.date || Date.UTC(new Date().getFullYear(), new Date().getMonth(), new Date().getDate())
+  const today = Date.UTC(new Date().getFullYear(), new Date().getMonth(), new Date().getDate())
+  const date = options.date || today
+
   const diff = new Date(date) - new Date(Date.UTC(2021, 5, 19))
   const gameId = Math.floor(diff / 864e5)
 
@@ -42,14 +44,10 @@ const get = (options) => {
 
 // VALIDATE WORD
 
-let validWordsBuffer = fs.readFileSync(path.join(__dirname, 'validWords.json'))
-let validWords = JSON.parse(validWordsBuffer)
+const validWordsBuffer = fs.readFileSync(path.join(__dirname, 'validWords.json'))
+const validWords = JSON.parse(validWordsBuffer)
 
-const validate = (word) => {
-  if (words.includes(word) || validWords.includes(word)) {
-    return true
-  }
-}
+const validate = (word) => words.includes(word) || validWords.includes(word)
 
 // SHOW WORD
 
@@ -61,12 +59,12 @@ const formattingCodes = {
 }
 
 const format = (color = 'reset') => `\x1b[${formattingCodes[color].join(';')}m`
-const endTile = () => format() + ' '
+const endTile = () => `${format()} `
 
 const show = async (result) => {
   let topBottom = ''
   let middle = ''
-  let breakpoints = []
+  const breakpoints = []
 
   result.forEach(({ color, letter }) => {
     topBottom += format(color) + insertSpaces(7) + endTile()
@@ -76,14 +74,15 @@ const show = async (result) => {
 
   console.log('\n\n\n\n\n\n')
 
-  for (let i = 0; i < result.length; i++) {
+  for (let i = 0; i < result.length; i += 1) {
     process.stdout.moveCursor(0, -5)
 
-    process.stdout.write(topBottom.substring(0, breakpoints[i]) + '\n')
-    process.stdout.write(middle.substring(0, breakpoints[i]) + '\n')
-    process.stdout.write(topBottom.substring(0, breakpoints[i]) + '\n')
+    process.stdout.write(`${topBottom.substring(0, breakpoints[i])}\n`)
+    process.stdout.write(`${middle.substring(0, breakpoints[i])}\n`)
+    process.stdout.write(`${topBottom.substring(0, breakpoints[i])}\n`)
     process.stdout.write('\n\n')
 
+    // eslint-disable-next-line
     await new Promise((resolve) => setTimeout(resolve, 300))
   }
 }
