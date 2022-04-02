@@ -26,13 +26,13 @@ const getOptions = () => {
               options.unlimited = true;
               break;
             case 'g':
-              [options.guesses] = flagSplit;
+              [, options.guesses] = flagSplit;
               break;
             case 'd':
-              [options.date] = flagSplit;
+              [, options.date] = flagSplit;
               break;
             case 'w':
-              [options.word] = flagSplit;
+              [, options.word] = flagSplit;
               break;
             default:
               break;
