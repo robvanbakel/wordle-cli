@@ -6,6 +6,12 @@
 npm i -g wordle-cli
 ```
 
+### Play without install
+
+```
+npx wordle-cli
+```
+
 ### How to play
 
 Try to guess the 5-letter word! After each round, you'll see the results, which are color-coded. Take the results into account when entering your next word and try to guess the selected word within six rounds.
